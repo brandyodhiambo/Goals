@@ -1,4 +1,4 @@
-package com.kanyiakinyidevelopers.goals.ui.fragments
+gitpackage com.kanyiakinyidevelopers.goals.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
