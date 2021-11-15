@@ -10,7 +10,7 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_onboarding_one.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
       </map>
     </option>
   </component>
