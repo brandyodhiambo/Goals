@@ -35,6 +35,13 @@ class AuthRepository {
             }
         }
     }
+    //forgot password
+    suspend fun forgotPassword(email: String):Resource<Any>{
+        return withContext(Dispatchers.IO){
+            firebaseAuth.sendPasswordResetEmail(email).await()
+            Resource.Success(Any())
+        }
+    }
 
 
 }

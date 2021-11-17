@@ -134,7 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPassword" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/txtSignIn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -152,7 +152,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/txtSignIn" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

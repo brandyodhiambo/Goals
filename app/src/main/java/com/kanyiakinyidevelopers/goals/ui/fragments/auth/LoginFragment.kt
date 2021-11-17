@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.kanyiakinyidevelopers.goals.R
 import com.kanyiakinyidevelopers.goals.databinding.FragmentLoginBinding
 import com.kanyiakinyidevelopers.goals.utils.EventObserver
@@ -35,6 +36,12 @@ class LoginFragment : Fragment() {
                 binding.textInputLayoutSignInPassword.editText?.text.toString()
             )
             this.hideKeyboard()
+        }
+        binding.forgotPass.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
+        }
+        binding.txtSignUp.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
         return binding.root
     }

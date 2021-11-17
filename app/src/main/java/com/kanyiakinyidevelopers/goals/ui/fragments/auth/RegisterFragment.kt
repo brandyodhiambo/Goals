@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.kanyiakinyidevelopers.goals.R
 import com.kanyiakinyidevelopers.goals.databinding.FragmentRegisterBinding
 import com.kanyiakinyidevelopers.goals.utils.EventObserver
@@ -39,6 +40,9 @@ class RegisterFragment : Fragment() {
                 )
                 this.hideKeyboard()
             }
+        binding.txtSignIn.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
         return binding.root
     }
     private fun subscribeToObserver(){

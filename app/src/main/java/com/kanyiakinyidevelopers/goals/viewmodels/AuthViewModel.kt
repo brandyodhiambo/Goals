@@ -27,6 +27,11 @@ class   AuthViewModel @Inject constructor(private val authRepository: AuthReposi
     private val _loginStatus =MutableLiveData<Event<Resource<AuthResult>>>()
     val loginStatus:LiveData<Event<Resource<AuthResult>>> = _loginStatus
 
+    //forgot Password
+    private val _forgotPass = MutableLiveData<Event<Resource<Any>>>()
+    val forgotPass:LiveData<Event<Resource<Any>>> = _forgotPass
+
+
 
     fun registerUsers(name:String,phone:String,email:String,password:String){
         var error = if (name.isEmpty()||phone.isEmpty()||email.isEmpty()||password.isEmpty())
@@ -45,6 +50,7 @@ class   AuthViewModel @Inject constructor(private val authRepository: AuthReposi
 
         error?.let {
             _registerStatus.postValue(Event(Resource.Error(it)))
+            return
         }
 
         _registerStatus.postValue(Event(Resource.Loading()))
@@ -60,19 +66,30 @@ class   AuthViewModel @Inject constructor(private val authRepository: AuthReposi
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             "Email not valid"
         }
-        else if (password.length<8){
-            "password too short"
-        }
         else null
 
         error?.let {
             _loginStatus.postValue(Event(Resource.Error(it)))
+            return
         }
         _loginStatus.postValue(Event(Resource.Loading()))
 
         viewModelScope.launch(Dispatchers.Main){
             val result = authRepository.loginUser(email, password)
             _loginStatus.postValue(Event(result))
+        }
+    }
+
+    fun forgotPassword(email: String){
+        val error = if(email.isEmpty()){
+            "Empty String"
+        } else{
+            _forgotPass.postValue(Event(Resource.Loading()))
+            viewModelScope.launch (Dispatchers.Main){
+                val result = authRepository.forgotPassword(email)
+                _forgotPass.postValue(Event(result))
+            }
+
         }
     }
 }
