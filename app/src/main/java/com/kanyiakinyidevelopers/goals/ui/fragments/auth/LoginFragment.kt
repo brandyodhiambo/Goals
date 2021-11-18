@@ -57,6 +57,7 @@ class LoginFragment : Fragment() {
         ){
             binding.SignInprogressBar.isVisible = false
             this.showSnackbar("Logged in Successfully")
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment3)
         }
 
         )
