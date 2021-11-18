@@ -5,10 +5,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.kanyiakinyidevelopers.goals.databinding.AchievedRowBinding
 import com.kanyiakinyidevelopers.goals.databinding.GoalRowBinding
 import com.kanyiakinyidevelopers.goals.models.Goal
 
-class GoalsAdapter : ListAdapter<Goal, GoalsAdapter.MyViewHolder>(COMPARATOR) {
+class AchievedGoalsAdapter : ListAdapter<Goal, AchievedGoalsAdapter.MyViewHolder>(COMPARATOR) {
 
     private object COMPARATOR : DiffUtil.ItemCallback<Goal>() {
         override fun areItemsTheSame(oldItem: Goal, newItem: Goal): Boolean {
@@ -21,21 +22,18 @@ class GoalsAdapter : ListAdapter<Goal, GoalsAdapter.MyViewHolder>(COMPARATOR) {
 
     }
 
-    inner class MyViewHolder(private val binding: GoalRowBinding) :
+    inner class MyViewHolder(private val binding: AchievedRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(goal: Goal?) {
-            binding.textViewTitle.text = goal?.title
-            binding.textViewDesc.text = goal?.description
-            binding.checkBoxAchieved.isChecked = goal!!.isAchieved
-            binding.textViewDate.text = goal.dateTime
-            binding.textViewName.text = goal.poster
+            binding.textViewATitle.text = goal?.title
+            binding.textViewADesc.text = goal?.description
         }
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
-            GoalRowBinding.inflate(
+            AchievedRowBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

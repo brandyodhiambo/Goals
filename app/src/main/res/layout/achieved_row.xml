@@ -14,7 +14,7 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/textViewATitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Design Website with Wordpress OS"
@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/textViewADesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -36,6 +36,6 @@
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewATitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
