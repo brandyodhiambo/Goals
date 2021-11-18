@@ -2,6 +2,7 @@ package com.kanyiakinyidevelopers.goals.di
 
 import androidx.core.app.ActivityCompat
 import com.kanyiakinyidevelopers.goals.data.AuthRepository
+import com.kanyiakinyidevelopers.goals.data.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,8 +16,10 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesAuthRepository():AuthRepository{
-        return AuthRepository()
-    }
+    fun providesAuthRepository() = AuthRepository()
+
+    @Provides
+    @Singleton
+    fun providesMainRepository() = MainRepository()
 
 }
