@@ -6,31 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarMain"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryVariant"
+        android:background="@null"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/MyThemeOverlay_Toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/notification_menu"
-        app:title="@string/app_name" />
-
+        app:theme="@style/ThemeOverlay.AppCompat"
+        app:titleTextColor="@color/white" />
 
     <fragment
-        android:id="@+id/fragmentContainerView2"
+        android:id="@+id/fragmentContainerView254"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMain"
         app:navGraph="@navigation/main_graph" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

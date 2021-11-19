@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Goals">
         <activity
             android:name=".ui.activities.MainActivity"
-            android:exported="false" android:theme="@style/Theme.Auth"/>
+            android:exported="false"/>
         <activity
             android:name=".ui.activities.AuthActivity"
             android:exported="true">

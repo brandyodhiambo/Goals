@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/achieved_row.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.18796296296296297" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12314814814814815" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_get_started.xml" value="0.18796296296296297" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
