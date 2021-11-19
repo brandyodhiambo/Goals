@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.main.HomeFragment">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,6 +27,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:textColor="@color/white"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp"
                 app:endIconDrawable="@drawable/ic_search"
                 app:endIconMode="custom"
                 app:endIconTint="@color/gray"
@@ -40,7 +43,7 @@
                     android:id="@+id/search_character"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Search..."
+                    android:hint="@string/search"
                     android:inputType="text"
                     android:textColorHint="@color/gray" />
 
@@ -52,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="5dp"
-                android:text="Achieved Goals"
+                android:text="@string/achieved_goals"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/searchView"
@@ -63,12 +66,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:drawableEnd="@drawable/ic_chevron_right"
                 android:drawablePadding="5dp"
                 android:gravity="center"
-                android:text="View All"
+                android:text="@string/view_all"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
+                app:drawableEndCompat="@drawable/ic_chevron_right"
                 app:layout_constraintEnd_toEndOf="@+id/searchView"
                 app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
@@ -78,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:orientation="horizontal"
+                android:visibility="invisible"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="@+id/txtSignUp"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
@@ -85,17 +89,27 @@
                 tools:itemCount="4"
                 tools:listitem="@layout/achieved_row" />
 
+            <include
+                android:id="@+id/shimmer_one"
+                layout="@layout/horizontal_shimmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/txtSignUp"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:padding="10dp"
-                android:text="Goals"
+                android:text="@string/app_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/recyclerView"
-                app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+                app:layout_constraintTop_toBottomOf="@+id/shimmer_one" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="0dp"
@@ -103,15 +117,26 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/textView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
                 tools:listitem="@layout/goal_row" />
+
+            <include
+                android:id="@+id/shimmer_two"
+                layout="@layout/vertical_shimmer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

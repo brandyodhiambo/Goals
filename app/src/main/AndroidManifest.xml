@@ -15,7 +15,8 @@
             android:exported="false"/>
         <activity
             android:name=".ui.activities.AuthActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Auth">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.kanyiakinyidevelopers.goals.R
 import com.kanyiakinyidevelopers.goals.adapters.AchievedGoalsAdapter
 import com.kanyiakinyidevelopers.goals.adapters.GoalsAdapter
@@ -40,6 +41,10 @@ class HomeFragment : Fragment() {
 
         subscribeToGoalsObserver()
         subscribeToAchievedGoalsObserver()
+
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_addGoalFragment)
+        }
 
         return view
     }

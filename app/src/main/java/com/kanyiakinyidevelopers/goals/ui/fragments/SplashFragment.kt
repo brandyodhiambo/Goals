@@ -1,6 +1,7 @@
 package com.kanyiakinyidevelopers.goals.ui.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Handler
 import android.os.Bundle
@@ -11,6 +12,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.kanyiakinyidevelopers.goals.R
+import com.kanyiakinyidevelopers.goals.ui.activities.MainActivity
 import com.kanyiakinyidevelopers.goals.viewmodels.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,7 +29,8 @@ class SplashFragment : Fragment() {
 
         viewModel.value.observe(viewLifecycleOwner, {
             if (!it && onBoardingFinished()){
-                findNavController().navigate(R.id.action_splashFragment_to_homeFragment3)
+                startActivity(Intent(requireActivity(), MainActivity::class.java))
+                requireActivity().finish()
             }else if (it && onBoardingFinished()){
                 findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
             }else{

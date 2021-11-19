@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_homeFragment3"
-            app:destination="@id/homeFragment3" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -43,9 +40,6 @@
             android:id="@+id/action_splashFragment_to_viewPagerFragment"
             app:destination="@id/viewPagerFragment" />
         <action
-            android:id="@+id/action_splashFragment_to_homeFragment3"
-            app:destination="@id/homeFragment3" />
-        <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
@@ -58,9 +52,4 @@
             android:id="@+id/action_viewPagerFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment3"
-        android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
 </navigation>
