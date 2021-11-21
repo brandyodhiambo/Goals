@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/goal_card"
         android:padding="10dp">
 
         <TextView
@@ -30,8 +31,8 @@
 
         <CheckBox
             android:id="@+id/checkBoxAchieved"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
             app:layout_constraintEnd_toEndOf="parent"

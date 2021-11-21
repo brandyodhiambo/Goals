@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.kanyiakinyidevelopers.goals.R
@@ -53,18 +54,19 @@ class HomeFragment : Fragment() {
         viewModel.goalsStatus.observe(viewLifecycleOwner, EventObserver(
             onError = {
                 showSnackbar(it)
-                //binding.goalsProgressbar.isVisible = false
+                binding.shimmerEffectTwo.root.isVisible = false
             },
             onLoading = {
-                //binding.goalsProgressbar.isVisible = true
+                binding.shimmerEffectTwo.root.isVisible = true
             }
         ) { goalsList ->
             if (goalsList.isEmpty()) {
                 Toast.makeText(requireContext(), "No Goals", Toast.LENGTH_SHORT).show()
             }
-            //binding.goalsProgressbar.isVisible = false
-            /*goalsAdapter.submitList(goalsList)
-            binding.goalsRecyclerView.adapter = goalsAdapter*/
+            binding.shimmerEffectTwo.root.isVisible = false
+            goalsAdapter.submitList(goalsList)
+            binding.allGoalsRecyclerView.adapter = goalsAdapter
+            binding.allGoalsRecyclerView.isVisible = true
         })
     }
 
@@ -72,18 +74,19 @@ class HomeFragment : Fragment() {
         viewModel.achievedGoalsStatus.observe(viewLifecycleOwner, EventObserver(
             onError = {
                 showSnackbar(it)
-                //binding.achievedGoalsProgressbar.isVisible = false
+                binding.shimmerOne.root.isVisible = false
             },
             onLoading = {
-                //binding.achievedGoalsProgressbar.isVisible = true
+                binding.shimmerOne.root.isVisible = true
             }
         ) { achieveGoalsList ->
             if (achieveGoalsList.isEmpty()) {
                 Toast.makeText(requireContext(), "No Achieved Goals", Toast.LENGTH_SHORT).show()
             }
-            //binding.achievedGoalsProgressbar.isVisible = false
-            /*achievedGoalsAdapter.submitList(achieveGoalsList)
-            binding.goalsRecyclerView.adapter = achievedGoalsAdapter*/
+            binding.shimmerOne.root.isVisible = false
+            achievedGoalsAdapter.submitList(achieveGoalsList)
+            binding.achievedGoalsRecyclerView.adapter = achievedGoalsAdapter
+            binding.achievedGoalsRecyclerView.isVisible = true
         })
     }
 }

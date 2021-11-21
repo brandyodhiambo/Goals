@@ -5,18 +5,11 @@ import com.kanyiakinyidevelopers.goals.models.Goal
 import com.kanyiakinyidevelopers.goals.utils.Resource
 import com.kanyiakinyidevelopers.goals.utils.safeCall
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.kanyiakinyidevelopers.goals.models.Goal
 import com.kanyiakinyidevelopers.goals.models.User
-import com.kanyiakinyidevelopers.goals.utils.Resource
-import com.kanyiakinyidevelopers.goals.utils.safeCall
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
+
 
 class MainRepository {
     private val databaseReference = FirebaseDatabase.getInstance().reference
@@ -50,7 +43,6 @@ class MainRepository {
         }
     }
 
-    private val databaseReference = FirebaseDatabase.getInstance().reference
 
     suspend fun getGoals(): Resource<List<Goal>> {
         return withContext(Dispatchers.IO) {

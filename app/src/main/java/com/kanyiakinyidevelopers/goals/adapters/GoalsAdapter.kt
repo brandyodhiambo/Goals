@@ -1,5 +1,7 @@
 package com.kanyiakinyidevelopers.goals.adapters
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -23,12 +25,26 @@ class GoalsAdapter : ListAdapter<Goal, GoalsAdapter.MyViewHolder>(COMPARATOR) {
 
     inner class MyViewHolder(private val binding: GoalRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("Range")
         fun bind(goal: Goal?) {
-            binding.textViewTitle.text = goal?.title
-            binding.textViewDesc.text = goal?.description
+
+            binding.textViewTitle.text = goal?.goalTitle
+            binding.textViewDesc.text = goal?.goalDescription
             binding.checkBoxAchieved.isChecked = goal!!.isAchieved
             binding.textViewDate.text = goal.dateTime
             binding.textViewName.text = goal.poster
+
+            val myColor: Int = Color.parseColor(goal.goalBgColor)
+
+            binding.goalCard.setBackgroundColor(myColor)
+
+            if (goal.goalBgColor.equals("#4d4dff")){
+                binding.textViewTitle.setTextColor(Color.parseColor("#ffffff"))
+                binding.textViewDesc.setTextColor(Color.parseColor("#ffffff"))
+                binding.checkBoxAchieved.setTextColor(Color.parseColor("#ffffff"))
+                binding.textViewDate.setTextColor(Color.parseColor("#ffffff"))
+                binding.textViewName.setTextColor(Color.parseColor("#ffffff"))
+            }
         }
 
     }

@@ -25,8 +25,8 @@ class AchievedGoalsAdapter : ListAdapter<Goal, AchievedGoalsAdapter.MyViewHolder
     inner class MyViewHolder(private val binding: AchievedRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(goal: Goal?) {
-            binding.textViewATitle.text = goal?.title
-            binding.textViewADesc.text = goal?.description
+            binding.textViewATitle.text = goal?.goalTitle
+            binding.textViewADesc.text = goal?.goalDescription
         }
 
     }
