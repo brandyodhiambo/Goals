@@ -1,4 +1,14 @@
 package com.kanyiakinyidevelopers.goals.models
 
-class Goal {
-}
+
+data class Goal(
+
+    val goalTitle: String? = null,
+    val goalDescription: String? = null,
+    val goalBgColor: String? = null,
+    val dateTime: String? = null,
+    val poster: String? = null,
+    val isAchieved: Boolean = false
+
+    )
+

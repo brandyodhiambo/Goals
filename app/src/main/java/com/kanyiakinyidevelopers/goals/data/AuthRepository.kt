@@ -20,7 +20,7 @@ class AuthRepository {
             safeCall {
                 val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
                 val uid = result.user?.uid!!
-                val user = User(name, phone, email)
+                val user = User(name, phone, email,uid)
                 databaseReference.child(uid).setValue(user).await()
                 Resource.Success(result)
             }

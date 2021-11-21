@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/auth_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/addGoalFragment">
 
     <fragment
         android:id="@+id/registerFragment"
@@ -63,4 +63,9 @@
         android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/addGoalFragment"
+        android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.AddGoalFragment"
+        android:label="fragment_add_goal"
+        tools:layout="@layout/fragment_add_goal" />
 </navigation>
