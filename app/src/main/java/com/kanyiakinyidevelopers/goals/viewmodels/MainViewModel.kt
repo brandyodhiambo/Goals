@@ -20,11 +20,11 @@ class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository
 ): ViewModel() {
 
-    private val _goalsStatus = MutableLiveData<Event<Resource<List<Goal>>>>()
-    val goalsStatus: LiveData<Event<Resource<List<Goal>>>> = _goalsStatus
+    private val _goalsStatus = MutableLiveData<Resource<List<Goal>>>()
+    val goalsStatus: LiveData<Resource<List<Goal>>> = _goalsStatus
 
-    private val _achievedGoalsStatus = MutableLiveData<Event<Resource<List<Goal>>>>()
-    val achievedGoalsStatus: LiveData<Event<Resource<List<Goal>>>> = _achievedGoalsStatus
+    private val _achievedGoalsStatus = MutableLiveData<Resource<List<Goal>>>()
+    val achievedGoalsStatus: LiveData<Resource<List<Goal>>> = _achievedGoalsStatus
 
     private val _addGoalStatus = MutableLiveData<Event<Resource<Any>>>()
     val addGoalStatus: LiveData<Event<Resource<Any>>> = _addGoalStatus
@@ -52,19 +52,19 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun getGoals() {
-        _goalsStatus.postValue(Event(Resource.Loading()))
+    fun getGoals() {
+        _goalsStatus.postValue(Resource.Loading())
         viewModelScope.launch(Dispatchers.Main) {
             val result = mainRepository.getGoals()
-            _goalsStatus.postValue(Event(result))
+            _goalsStatus.postValue(result)
         }
     }
 
-    private fun getAchievedGoals() {
-        _achievedGoalsStatus.postValue(Event(Resource.Loading()))
+    fun getAchievedGoals() {
+        _achievedGoalsStatus.postValue(Resource.Loading())
         viewModelScope.launch(Dispatchers.Main) {
             val result = mainRepository.getAchievedGoals()
-            _achievedGoalsStatus.postValue(Event(result))
+            _achievedGoalsStatus.postValue(result)
         }
     }
 }

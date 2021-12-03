@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/goal_row.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/horizontal_shimmer.xml" value="0.26145833333333335" />
         <entry key="app/src/main/res/layout/shimmer_layout.xml" value="0.26145833333333335" />
         <entry key="app/src/main/res/layout/vertical_shimmer.xml" value="0.26145833333333335" />
       </map>

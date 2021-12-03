@@ -6,137 +6,147 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.main.HomeFragment">
 
-    <ScrollView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/searchView"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="@color/white"
-                app:boxCornerRadiusBottomEnd="12dp"
-                app:boxCornerRadiusBottomStart="12dp"
-                app:boxCornerRadiusTopEnd="12dp"
-                app:boxCornerRadiusTopStart="12dp"
-                app:endIconDrawable="@drawable/ic_search"
-                app:endIconMode="custom"
-                app:endIconTint="@color/gray"
-                app:hintEnabled="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/search_character"
-                    android:layout_width="match_parent"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/searchView"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:hint="@string/search"
-                    android:inputType="text"
-                    android:textColorHint="@color/gray" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:textColor="@color/white"
+                    app:boxCornerRadiusBottomEnd="12dp"
+                    app:boxCornerRadiusBottomStart="12dp"
+                    app:boxCornerRadiusTopEnd="12dp"
+                    app:boxCornerRadiusTopStart="12dp"
+                    app:endIconDrawable="@drawable/ic_search"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/gray"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-            </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/search_character"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search"
+                        android:inputType="text"
+                        android:textColorHint="@color/gray" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/achieved_goals"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/searchView"
-                app:layout_constraintTop_toBottomOf="@+id/searchView" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/txtSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:drawablePadding="5dp"
-                android:gravity="center"
-                android:text="@string/view_all"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textStyle="bold"
-                app:drawableEndCompat="@drawable/ic_chevron_right"
-                app:layout_constraintEnd_toEndOf="@+id/searchView"
-                app:layout_constraintTop_toBottomOf="@+id/searchView" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/achieved_goals"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/searchView"
+                    app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/achievedGoalsRecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:orientation="horizontal"
-                android:visibility="invisible"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="@+id/txtSignUp"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4"
-                tools:itemCount="4"
-                tools:listitem="@layout/achieved_row" />
+                <TextView
+                    android:id="@+id/txtSignUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:text="@string/view_all"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textStyle="bold"
+                    app:drawableEndCompat="@drawable/ic_chevron_right"
+                    app:layout_constraintEnd_toEndOf="@+id/searchView"
+                    app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-            <include
-                android:id="@+id/shimmer_one"
-                layout="@layout/horizontal_shimmer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="@+id/txtSignUp"
-                app:layout_constraintStart_toStartOf="@+id/textView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/achievedGoalsRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
+                    android:visibility="invisible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="@+id/txtSignUp"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/achieved_row" />
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/app_name"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@+id/achievedGoalsRecyclerView"
-                app:layout_constraintTop_toBottomOf="@+id/achievedGoalsRecyclerView" />
+                <include
+                    android:id="@+id/shimmer_one"
+                    layout="@layout/horizontal_shimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="@+id/txtSignUp"
+                    app:layout_constraintStart_toStartOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/allGoalsRecyclerView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="8dp"
-                android:orientation="vertical"
-                android:visibility="gone"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:listitem="@layout/goal_row" />
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@+id/achievedGoalsRecyclerView"
+                    app:layout_constraintTop_toBottomOf="@+id/achievedGoalsRecyclerView" />
 
-            <include
-                android:id="@+id/shimmer_effect_two"
-                layout="@layout/vertical_shimmer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/allGoalsRecyclerView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/textView6"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    tools:listitem="@layout/goal_row" />
 
+                <include
+                    android:id="@+id/shimmer_effect_two"
+                    layout="@layout/vertical_shimmer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
