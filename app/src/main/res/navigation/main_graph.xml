@@ -12,10 +12,18 @@
         <action
             android:id="@+id/action_homeFragment_to_addGoalFragment"
             app:destination="@id/addGoalFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_achivedGoalsFragment"
+            app:destination="@id/achivedGoalsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGoalFragment"
         android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.AddGoalFragment"
-        android:label="fragment_add_goal"
+        android:label="Add Goal"
         tools:layout="@layout/fragment_add_goal" />
+    <fragment
+        android:id="@+id/achivedGoalsFragment"
+        android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.AchivedGoalsFragment"
+        android:label="Achieved Goals"
+        tools:layout="@layout/fragment_achived_goals" />
 </navigation>

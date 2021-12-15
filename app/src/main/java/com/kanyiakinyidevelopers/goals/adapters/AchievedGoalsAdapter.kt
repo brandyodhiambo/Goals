@@ -6,10 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kanyiakinyidevelopers.goals.databinding.AchievedRowBinding
-import com.kanyiakinyidevelopers.goals.databinding.GoalRowBinding
 import com.kanyiakinyidevelopers.goals.models.Goal
 
-class AchievedGoalsAdapter : ListAdapter<Goal, AchievedGoalsAdapter.MyViewHolder>(COMPARATOR) {
+class AchievedGoalsAdapter :
+    ListAdapter<Goal, AchievedGoalsAdapter.MyViewHolder>(COMPARATOR) {
 
     private object COMPARATOR : DiffUtil.ItemCallback<Goal>() {
         override fun areItemsTheSame(oldItem: Goal, newItem: Goal): Boolean {
@@ -44,5 +44,10 @@ class AchievedGoalsAdapter : ListAdapter<Goal, AchievedGoalsAdapter.MyViewHolder
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val goal = getItem(position)
         holder.bind(goal)
+
     }
+
+   /* class OnClickListener(val clickListener: (goalModel: Goal) -> Unit) {
+        fun onClick(goalModel: Goal) = clickListener(goalModel)
+    }*/
 }

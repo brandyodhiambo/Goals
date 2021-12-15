@@ -7,6 +7,7 @@ import com.kanyiakinyidevelopers.goals.utils.safeCall
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.Query
 import com.kanyiakinyidevelopers.goals.models.User
 import kotlinx.coroutines.tasks.await
 
@@ -14,7 +15,7 @@ import kotlinx.coroutines.tasks.await
 class MainRepository {
     private val databaseReference = FirebaseDatabase.getInstance().reference
 
-    suspend fun addGoal(goalTitle:String,goalDescription:String,goalColor:String):Resource<Any>{
+    suspend fun addGoal(id:String,goalTitle:String,goalDescription:String,goalColor:String):Resource<Any>{
         return withContext(Dispatchers.IO){
             safeCall {
 
@@ -36,7 +37,9 @@ class MainRepository {
                 val dateTimeSec = System.currentTimeMillis()
 
 
-                val goal = Goal(goalTitle,goalDescription,goalColor,dateTimeSec.toString(),posterr,false)
+                val goal = Goal(id,goalTitle,goalDescription,goalColor,dateTimeSec.toString(),posterr,
+                    false
+                )
                 databaseReference.child("goals").push().setValue(goal).await()
                 Resource.Success(goal)
             }
@@ -79,4 +82,25 @@ class MainRepository {
             }
         }
     }
+
+  /*  suspend fun getAllAchievedGoals():Resource<List<Goal>>{
+        return withContext(Dispatchers.IO){
+            val allAchieved = ArrayList<Goal>()
+            safeCall {
+               val achievedGoal = databaseReference.child("achieved_goals").get().await()
+
+                for (achieved in achievedGoal.children){
+                    val query:Query = FirebaseDatabase.getInstance()
+                        .getReference()
+                        .child("achived_goals")
+
+
+                }
+
+
+
+
+            }
+        }
+    }*/
 }

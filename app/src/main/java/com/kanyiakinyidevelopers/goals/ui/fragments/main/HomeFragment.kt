@@ -1,6 +1,7 @@
 package com.kanyiakinyidevelopers.goals.ui.fragments.main
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.kanyiakinyidevelopers.goals.utils.Resource
 import com.kanyiakinyidevelopers.goals.utils.showSnackbar
 import com.kanyiakinyidevelopers.goals.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -30,7 +32,7 @@ class HomeFragment : Fragment() {
         GoalsAdapter()
     }
 
-    private val achievedGoalsAdapter: AchievedGoalsAdapter by lazy {
+  private val achievedGoalsAdapter: AchievedGoalsAdapter by lazy {
         AchievedGoalsAdapter()
     }
 
@@ -41,6 +43,12 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        binding.txtViewAll.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_achivedGoalsFragment)
+        }
+
+
 
         subscribeToGoalsObserver()
         subscribeToAchievedGoalsObserver()
@@ -104,10 +112,12 @@ class HomeFragment : Fragment() {
                     }
                     binding.shimmerOne.root.isVisible = false
                     binding.swipeLayout.isRefreshing = false
+
                     achievedGoalsAdapter.submitList(it.data)
                     binding.achievedGoalsRecyclerView.adapter = achievedGoalsAdapter
-
                     binding.achievedGoalsRecyclerView.isVisible = true
+
+                    Timber.d("${it.data}")
                 }
                 is Resource.Error ->{
                     showSnackbar(it.message!!)

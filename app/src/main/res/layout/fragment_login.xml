@@ -105,7 +105,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/txtSignUp" />
+        app:layout_constraintTop_toBottomOf="@+id/txtViewAll" />
 
     <TextView
         android:id="@+id/forgotPass"
