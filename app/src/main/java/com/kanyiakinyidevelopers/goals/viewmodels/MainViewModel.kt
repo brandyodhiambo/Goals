@@ -50,7 +50,7 @@ class MainViewModel @Inject constructor(
         _addGoalStatus.postValue(Event(Resource.Loading()))
 
         viewModelScope.launch(Dispatchers.Main) {
-            val result = mainRepository.addGoal(goalTitle, goalDescription, goalColor)
+            val result = mainRepository.addGoal("1",goalTitle, goalDescription, goalColor)
             _addGoalStatus.postValue(Event(result))
         }
     }
