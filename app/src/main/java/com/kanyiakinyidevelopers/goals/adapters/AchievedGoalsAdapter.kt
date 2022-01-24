@@ -45,9 +45,6 @@ class AchievedGoalsAdapter :
         val goal = getItem(position)
         holder.bind(goal)
 
-    }
 
-   /* class OnClickListener(val clickListener: (goalModel: Goal) -> Unit) {
-        fun onClick(goalModel: Goal) = clickListener(goalModel)
-    }*/
+    }
 }

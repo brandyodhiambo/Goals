@@ -27,12 +27,13 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var goalsAdapter: GoalsAdapter
 
-    private val goalsAdapter: GoalsAdapter by lazy {
+    /*private val goalsAdapter: GoalsAdapter by lazy {
         GoalsAdapter()
-    }
+    }*/
 
-  private val achievedGoalsAdapter: AchievedGoalsAdapter by lazy {
+    private val achievedGoalsAdapter: AchievedGoalsAdapter by lazy {
         AchievedGoalsAdapter()
     }
 
@@ -43,6 +44,13 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        goalsAdapter = GoalsAdapter(GoalsAdapter.OnClickListener {
+
+            Toast.makeText(requireContext(), "You clicked me", Toast.LENGTH_SHORT).show()
+
+
+        })
 
         binding.txtViewAll.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_achivedGoalsFragment)
@@ -60,6 +68,7 @@ class HomeFragment : Fragment() {
         binding.swipeLayout.setOnRefreshListener {
             viewModel.getGoals()
             viewModel.getAchievedGoals()
+
         }
 
         return view
@@ -67,13 +76,13 @@ class HomeFragment : Fragment() {
 
     private fun subscribeToGoalsObserver() {
         viewModel.goalsStatus.observe(viewLifecycleOwner, Observer {
-            when(it){
-                is Resource.Loading ->{
+            when (it) {
+                is Resource.Loading -> {
                     binding.shimmerEffectTwo.root.isVisible = true
                     binding.allGoalsRecyclerView.isVisible = false
 
                 }
-                is Resource.Success ->{
+                is Resource.Success -> {
                     if (it.data?.isEmpty()!!) {
                         Toast.makeText(requireContext(), "No Goals", Toast.LENGTH_SHORT).show()
                         binding.swipeLayout.isRefreshing = false
@@ -85,7 +94,7 @@ class HomeFragment : Fragment() {
                     binding.allGoalsRecyclerView.adapter = goalsAdapter
                     binding.allGoalsRecyclerView.isVisible = true
                 }
-                is Resource.Error ->{
+                is Resource.Error -> {
                     showSnackbar(it.message!!)
                     binding.shimmerEffectTwo.root.isVisible = true
                     binding.swipeLayout.isRefreshing = false
@@ -100,14 +109,15 @@ class HomeFragment : Fragment() {
 
     private fun subscribeToAchievedGoalsObserver() {
         viewModel.achievedGoalsStatus.observe(viewLifecycleOwner, Observer {
-            when(it){
-                is Resource.Loading ->{
+            when (it) {
+                is Resource.Loading -> {
                     binding.shimmerOne.root.isVisible = true
                     binding.achievedGoalsRecyclerView.isVisible = false
                 }
-                is Resource.Success ->{
+                is Resource.Success -> {
                     if (it.data?.isEmpty()!!) {
-                        Toast.makeText(requireContext(), "No Achieved Goals", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "No Achieved Goals", Toast.LENGTH_SHORT)
+                            .show()
                         binding.swipeLayout.isRefreshing = false
                     }
                     binding.shimmerOne.root.isVisible = false
@@ -119,7 +129,7 @@ class HomeFragment : Fragment() {
 
                     Timber.d("${it.data}")
                 }
-                is Resource.Error ->{
+                is Resource.Error -> {
                     showSnackbar(it.message!!)
                     binding.swipeLayout.isRefreshing = false
                     binding.shimmerOne.root.isVisible = true
@@ -129,6 +139,6 @@ class HomeFragment : Fragment() {
                 }
             }
         })
-
     }
+
 }

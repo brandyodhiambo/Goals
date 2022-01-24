@@ -29,6 +29,9 @@ class MainViewModel @Inject constructor(
     private val _addGoalStatus = MutableLiveData<Event<Resource<Any>>>()
     val addGoalStatus: LiveData<Event<Resource<Any>>> = _addGoalStatus
 
+    private val _removeGoalStatus = MutableLiveData<Event<Resource<Any>>>()
+    val removeGoalStatus:LiveData<Event<Resource<Any>>> = _removeGoalStatus
+
     init {
         getGoals()
         getAchievedGoals()
@@ -67,4 +70,6 @@ class MainViewModel @Inject constructor(
             _achievedGoalsStatus.postValue(result)
         }
     }
+
+
 }
