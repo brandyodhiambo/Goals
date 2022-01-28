@@ -3,7 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/achieved_row.xml" value="0.75" />
+        <entry key="app/src/main/res/layout/achieved_row.xml" value="0.6303571428571428" />
         <entry key="app/src/main/res/layout/achived_goals_row.xml" value="0.18796296296296297" />
         <entry key="app/src/main/res/layout/activity_auth.xml" value="0.18796296296296297" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
@@ -11,15 +11,17 @@
         <entry key="app/src/main/res/layout/fragment_add_goal.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_get_started.xml" value="0.18796296296296297" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24334784712143204" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_onboarding_one.xml" value="0.19635416666666666" />
-        <entry key="app/src/main/res/layout/fragment_onboarding_three.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/fragment_onboarding_two.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_view_pager.xml" value="0.1" />
         <entry key="app/src/main/res/layout/goal_row.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/home_layout_shimmer.xml" value="0.13489583333333333" />
+        <entry key="app/src/main/res/layout/horizontal_shimmer.xml" value="0.17407407407407408" />
+        <entry key="app/src/main/res/layout/parent_recycler_row.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/shimmer_layout.xml" value="0.26145833333333335" />
         <entry key="app/src/main/res/layout/vertical_shimmer.xml" value="0.26145833333333335" />
       </map>

@@ -1,29 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragments.main.HomeFragment">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
+            android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+                android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/searchView"
@@ -81,29 +75,24 @@
                     app:layout_constraintEnd_toEndOf="@+id/searchView"
                     app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
-                <androidx.recyclerview.widget.RecyclerView
+
+                <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                     android:id="@+id/achievedGoalsRecyclerView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white"
                     android:orientation="horizontal"
-                    android:visibility="invisible"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="@+id/txtViewAll"
                     app:layout_constraintStart_toStartOf="@+id/textView4"
                     app:layout_constraintTop_toBottomOf="@+id/textView4"
-                    tools:itemCount="4"
+                    app:shimmer_demo_angle="20"
+                    app:shimmer_demo_child_count="1"
+                    app:shimmer_demo_grid_child_count="2"
+                    app:shimmer_demo_layout="@layout/horizontal_shimmer"
+                    app:shimmer_demo_layout_manager_type="linear_vertical"
                     tools:listitem="@layout/achieved_row" />
-
-                <include
-                    android:id="@+id/shimmer_one"
-                    layout="@layout/horizontal_shimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="@+id/txtViewAll"
-                    app:layout_constraintStart_toStartOf="@+id/textView4"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
                 <TextView
                     android:id="@+id/textView6"
@@ -116,51 +105,42 @@
                     app:layout_constraintStart_toStartOf="@+id/achievedGoalsRecyclerView"
                     app:layout_constraintTop_toBottomOf="@+id/achievedGoalsRecyclerView" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.cooltechworks.views.shimmer.ShimmerRecyclerView
                     android:id="@+id/allGoalsRecyclerView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="8dp"
+                    android:nestedScrollingEnabled="false"
                     android:orientation="vertical"
-                    android:visibility="gone"
+                    android:scrollbars="none"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/textView6"
                     app:layout_constraintTop_toBottomOf="@+id/textView6"
+                    app:shimmer_demo_angle="20"
+                    app:shimmer_demo_child_count="10"
+                    app:shimmer_demo_grid_child_count="2"
+                    app:shimmer_demo_layout="@layout/vertical_shimmer"
+                    app:shimmer_demo_layout_manager_type="linear_vertical"
                     tools:listitem="@layout/goal_row" />
-
-                <include
-                    android:id="@+id/shimmer_effect_two"
-                    layout="@layout/vertical_shimmer"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:backgroundTint="@color/main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_add"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
 
-        </ScrollView>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:clickable="true"
-        android:focusable="true"
-        app:backgroundTint="@color/main"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add"
-        app:tint="@color/white"
-        tools:ignore="ContentDescription" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

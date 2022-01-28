@@ -44,7 +44,5 @@ class AchievedGoalsAdapter :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val goal = getItem(position)
         holder.bind(goal)
-
-
     }
 }

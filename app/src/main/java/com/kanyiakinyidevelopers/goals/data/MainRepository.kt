@@ -10,6 +10,18 @@ import com.google.firebase.database.*
 import com.kanyiakinyidevelopers.goals.models.User
 import kotlinx.coroutines.tasks.await
 import timber.log.Timber
+import com.google.firebase.database.DatabaseError
+
+import com.google.firebase.database.DataSnapshot
+
+import com.google.firebase.database.ValueEventListener
+
+import com.google.firebase.database.FirebaseDatabase
+
+import com.google.firebase.database.DatabaseReference
+
+
+
 
 
 class MainRepository {
@@ -41,6 +53,7 @@ class MainRepository {
                 val dateTimeSec = System.currentTimeMillis()
 
                 val pushId = databaseReference.child("goals").push().key
+
 
                 val goal = Goal(pushId,goalTitle, goalDescription, goalColor, dateTimeSec.toString(), posterr,
                     false
@@ -88,38 +101,27 @@ class MainRepository {
         }
     }
 
-    suspend fun delete():Resource<Any> {
+    suspend fun markGoalAsAchieved(goal: Goal): Resource<Any>{
         return withContext(Dispatchers.IO){
 
-            databaseReference.child("goals").get().await()
-            val applesQuery: Query =
-                databaseReference.child("goals").orderByChild("title")
-            applesQuery.addListenerForSingleValueEvent(object: ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for (values in snapshot.children){
-                        values.ref.removeValue()
+            databaseReference.child("goals").orderByChild("postId").equalTo(goal.postId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        for (data in dataSnapshot.children) {
+                            data.ref.removeValue()
+                        }
                     }
-                }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Timber.d(error.toException())
-                }
+                    override fun onCancelled(databaseError: DatabaseError) {}
+                })
 
-            })
+            Timber.d("Post ID: ${goal.postId}")
 
-            /*val removed = databaseReference.child("goals").get().await()
+            Timber.d("Goal: $goal")
 
-                for (i in removed.children) {
-                    val result = i.getValue(Transaction::class.java)
-                    transactsList.add(result!!)
-                }
-                Resource.Success(transactsList)
-            }
-*/
+            databaseReference.child("achieved_goals").push().setValue(goal).await()
 
-
-            Resource.Success("")
+            Resource.Success("Success in marking goal as achieved")
         }
     }
-
 }

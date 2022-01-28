@@ -29,8 +29,13 @@ class MainViewModel @Inject constructor(
     private val _addGoalStatus = MutableLiveData<Event<Resource<Any>>>()
     val addGoalStatus: LiveData<Event<Resource<Any>>> = _addGoalStatus
 
+    private val _markGoalAsAchievedStatus = MutableLiveData<Event<Resource<Any>>>()
+    val markGoalAsAchievedStatus: LiveData<Event<Resource<Any>>> = _markGoalAsAchievedStatus
+
     private val _removeGoalStatus = MutableLiveData<Event<Resource<Any>>>()
     val removeGoalStatus:LiveData<Event<Resource<Any>>> = _removeGoalStatus
+
+
 
     init {
         getGoals()
@@ -50,7 +55,7 @@ class MainViewModel @Inject constructor(
         _addGoalStatus.postValue(Event(Resource.Loading()))
 
         viewModelScope.launch(Dispatchers.Main) {
-            val result = mainRepository.addGoal("1",goalTitle, goalDescription, goalColor)
+            val result = mainRepository.addGoal(goalTitle, goalDescription, goalColor)
             _addGoalStatus.postValue(Event(result))
         }
     }
@@ -71,5 +76,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
-
+    fun markGoalAsAchieved(goal: Goal){
+        _markGoalAsAchievedStatus.postValue(Event(Resource.Loading()))
+        viewModelScope.launch(Dispatchers.Main) {
+            val result = mainRepository.markGoalAsAchieved(goal)
+            _markGoalAsAchievedStatus.postValue(Event(result))
+        }
+    }
 }

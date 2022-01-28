@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -28,24 +29,24 @@ class GoalsAdapter(private val onClickListener:OnClickListener) : ListAdapter<Go
     inner class MyViewHolder(private val binding: GoalRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        val checkBox = itemView.findViewById<CheckBox>(R.id.checkBoxAchieved)
+        val checkBox = itemView.findViewById<ImageView>(R.id.checkBoxAchieved)
         @SuppressLint("Range")
         fun bind(goal: Goal?) {
 
             binding.textViewTitle.text = goal?.goalTitle
             binding.textViewDesc.text = goal?.goalDescription
-            binding.checkBoxAchieved.isChecked = goal!!.isAchieved
-            binding.textViewDate.text = goal.dateTime
-            binding.textViewName.text = goal.poster
+            //binding.checkBoxAchieved.isChecked = goal!!.isAchieved
+            binding.textViewDate.text = goal?.dateTime
+            binding.textViewName.text = goal?.poster
 
-            val myColor: Int = Color.parseColor(goal.goalBgColor)
+            val myColor: Int = Color.parseColor(goal?.goalBgColor)
 
             binding.goalCard.setBackgroundColor(myColor)
 
-            if (goal.goalBgColor.equals("#4d4dff")){
+            if (goal?.goalBgColor.equals("#4d4dff")){
                 binding.textViewTitle.setTextColor(Color.parseColor("#ffffff"))
                 binding.textViewDesc.setTextColor(Color.parseColor("#ffffff"))
-                binding.checkBoxAchieved.setTextColor(Color.parseColor("#ffffff"))
+                //binding.checkBoxAchieved.setTextColor(Color.parseColor("#ffffff"))
                 binding.textViewDate.setTextColor(Color.parseColor("#ffffff"))
                 binding.textViewName.setTextColor(Color.parseColor("#ffffff"))
             }

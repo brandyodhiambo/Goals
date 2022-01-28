@@ -97,4 +97,7 @@ dependencies {
     // Timber for logging
     implementation 'com.jakewharton.timber:timber:5.0.1'
 
+    //Shimmer Effect
+    implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
+
 }

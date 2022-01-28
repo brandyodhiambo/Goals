@@ -29,11 +29,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
+        <ImageView
             android:id="@+id/checkBoxAchieved"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:padding="8dp"
+            android:src="@drawable/ic_check"
             app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textViewTitle" />

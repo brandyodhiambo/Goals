@@ -1,26 +1,24 @@
 package com.kanyiakinyidevelopers.goals.ui.fragments.main
 
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.kanyiakinyidevelopers.goals.R
 import com.kanyiakinyidevelopers.goals.adapters.AchievedGoalsAdapter
 import com.kanyiakinyidevelopers.goals.adapters.GoalsAdapter
 import com.kanyiakinyidevelopers.goals.databinding.FragmentHomeBinding
-import com.kanyiakinyidevelopers.goals.utils.EventObserver
 import com.kanyiakinyidevelopers.goals.utils.Resource
 import com.kanyiakinyidevelopers.goals.utils.showSnackbar
 import com.kanyiakinyidevelopers.goals.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -28,10 +26,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
     private lateinit var goalsAdapter: GoalsAdapter
-
-    /*private val goalsAdapter: GoalsAdapter by lazy {
-        GoalsAdapter()
-    }*/
 
     private val achievedGoalsAdapter: AchievedGoalsAdapter by lazy {
         AchievedGoalsAdapter()
@@ -45,21 +39,37 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        goalsAdapter = GoalsAdapter(GoalsAdapter.OnClickListener {
+        subscribeToGoalsObserver()
+        subscribeToAchievedGoalsObserver()
 
-            Toast.makeText(requireContext(), "You clicked me", Toast.LENGTH_SHORT).show()
+        goalsAdapter = GoalsAdapter(GoalsAdapter.OnClickListener { goal ->
+            AlertDialog.Builder(requireContext())
+                .setTitle("Marking Goal")
+                .setMessage("Are you sure you have achieved this goal?")
+                .setCancelable(false)
+                .setPositiveButton(
+                    "Yes"
+                ) { _, _ ->
 
+                    viewModel.markGoalAsAchieved(goal)
+
+                    binding.swipeLayout.post {
+                        binding.swipeLayout.isRefreshing = true
+                        viewModel.getGoals()
+                        viewModel.getAchievedGoals()
+                    }
+
+                    Toast.makeText(requireContext(), "Goal Marked as achieved", Toast.LENGTH_LONG)
+                        .show()
+                }
+                .setNegativeButton("No", null)
+                .show()
 
         })
 
         binding.txtViewAll.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_achivedGoalsFragment)
         }
-
-
-
-        subscribeToGoalsObserver()
-        subscribeToAchievedGoalsObserver()
 
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addGoalFragment)
@@ -68,18 +78,17 @@ class HomeFragment : Fragment() {
         binding.swipeLayout.setOnRefreshListener {
             viewModel.getGoals()
             viewModel.getAchievedGoals()
-
         }
 
         return view
     }
 
+
     private fun subscribeToGoalsObserver() {
-        viewModel.goalsStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.goalsStatus.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
-                    binding.shimmerEffectTwo.root.isVisible = true
-                    binding.allGoalsRecyclerView.isVisible = false
+                    binding.allGoalsRecyclerView.showShimmerAdapter()
 
                 }
                 is Resource.Success -> {
@@ -88,15 +97,14 @@ class HomeFragment : Fragment() {
                         binding.swipeLayout.isRefreshing = false
 
                     }
-                    binding.shimmerEffectTwo.root.isVisible = false
                     binding.swipeLayout.isRefreshing = false
                     goalsAdapter.submitList(it.data)
                     binding.allGoalsRecyclerView.adapter = goalsAdapter
-                    binding.allGoalsRecyclerView.isVisible = true
+                    binding.allGoalsRecyclerView.hideShimmerAdapter()
                 }
                 is Resource.Error -> {
                     showSnackbar(it.message!!)
-                    binding.shimmerEffectTwo.root.isVisible = true
+                    binding.allGoalsRecyclerView.showShimmerAdapter()
                     binding.swipeLayout.isRefreshing = false
                 }
                 else -> {
@@ -108,11 +116,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun subscribeToAchievedGoalsObserver() {
-        viewModel.achievedGoalsStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.achievedGoalsStatus.observe(viewLifecycleOwner, {
             when (it) {
                 is Resource.Loading -> {
-                    binding.shimmerOne.root.isVisible = true
-                    binding.achievedGoalsRecyclerView.isVisible = false
+                    binding.achievedGoalsRecyclerView.showShimmerAdapter()
                 }
                 is Resource.Success -> {
                     if (it.data?.isEmpty()!!) {
@@ -120,19 +127,17 @@ class HomeFragment : Fragment() {
                             .show()
                         binding.swipeLayout.isRefreshing = false
                     }
-                    binding.shimmerOne.root.isVisible = false
                     binding.swipeLayout.isRefreshing = false
 
                     achievedGoalsAdapter.submitList(it.data)
                     binding.achievedGoalsRecyclerView.adapter = achievedGoalsAdapter
-                    binding.achievedGoalsRecyclerView.isVisible = true
+                    binding.achievedGoalsRecyclerView.hideShimmerAdapter()
 
                     Timber.d("${it.data}")
                 }
                 is Resource.Error -> {
                     showSnackbar(it.message!!)
                     binding.swipeLayout.isRefreshing = false
-                    binding.shimmerOne.root.isVisible = true
                 }
                 else -> {
                     Toast.makeText(requireContext(), "Unknown Error", Toast.LENGTH_SHORT).show()
@@ -140,5 +145,4 @@ class HomeFragment : Fragment() {
             }
         })
     }
-
 }
