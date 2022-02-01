@@ -12,6 +12,8 @@ import com.kanyiakinyidevelopers.goals.utils.Resource
 
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,6 +37,11 @@ class MainViewModel @Inject constructor(
     private val _removeGoalStatus = MutableLiveData<Event<Resource<Any>>>()
     val removeGoalStatus:LiveData<Event<Resource<Any>>> = _removeGoalStatus
 
+    private val _deleteGoal = MutableLiveData<Event<Resource<Any>>>()
+    val deleteGoal:LiveData<Event<Resource<Any>>> = _removeGoalStatus
+
+    private val _goalChannel = Channel<GoalEvent>()
+    val goalChannel = _goalChannel.receiveAsFlow()
 
 
     init {
@@ -82,5 +89,20 @@ class MainViewModel @Inject constructor(
             val result = mainRepository.markGoalAsAchieved(goal)
             _markGoalAsAchievedStatus.postValue(Event(result))
         }
+    }
+    fun onGoalDeleted(goal: Goal){
+        viewModelScope.launch(Dispatchers.Main){
+            val remove = mainRepository.deleteGoal(goal)
+            _deleteGoal.postValue(Event(remove))
+            _goalChannel.send(GoalEvent.showUndoDeletedMessage(goal))
+        }
+    }
+
+    fun onUndo(goal: Goal) = viewModelScope.launch {
+
+    }
+
+    sealed class GoalEvent{
+        data class showUndoDeletedMessage(val goal: Goal): GoalEvent()
     }
 }

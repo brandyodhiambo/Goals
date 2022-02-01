@@ -124,4 +124,27 @@ class MainRepository {
             Resource.Success("Success in marking goal as achieved")
         }
     }
+
+    suspend fun deleteGoal(goal: Goal): Resource<Any>{
+        return withContext(Dispatchers.IO){
+
+            databaseReference.child("achieved_goals").orderByChild("postId").equalTo(goal.postId)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        for (data in dataSnapshot.children) {
+                            data.ref.removeValue()
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {}
+                })
+
+            Timber.d("Post ID: ${goal.postId}")
+
+            Timber.d("Goal: $goal")
+
+            Resource.Success("Deleted Successfully")
+        }
+    }
+
 }

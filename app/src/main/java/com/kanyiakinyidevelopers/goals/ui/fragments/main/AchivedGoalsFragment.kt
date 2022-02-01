@@ -9,6 +9,10 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.kanyiakinyidevelopers.goals.adapters.AchievedGoalsAdapter
@@ -19,6 +23,7 @@ import com.kanyiakinyidevelopers.goals.utils.Resource
 import com.kanyiakinyidevelopers.goals.utils.showSnackbar
 import com.kanyiakinyidevelopers.goals.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 
 @AndroidEntryPoint
@@ -39,6 +44,36 @@ class AchivedGoalsFragment : Fragment() {
         subscribeToAllAchievedGoalsObserver()
 
         viewModel.getAchievedGoals()
+
+        ItemTouchHelper(object:ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val goal = achievedGoalsAdapter.currentList[viewHolder.adapterPosition]
+                viewModel.onGoalDeleted(goal)
+            }
+
+        }).attachToRecyclerView(binding.allAchivedGoals)
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.goalChannel.collect { event->
+                when(event){
+                    is MainViewModel.GoalEvent.showUndoDeletedMessage->{
+                        Snackbar.make(requireView(),"Deleted Goal",Snackbar.LENGTH_LONG)
+                            .setAction("Undo"){
+                                viewModel.onUndo(event.goal)
+                            }.show()
+                    }
+                }
+            }
+        }
+
         return binding.root
     }
 
