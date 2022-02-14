@@ -1,21 +1,18 @@
 package com.kanyiakinyidevelopers.goals.ui.fragments.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.kanyiakinyidevelopers.goals.adapters.AchievedGoalsAdapter
 import com.kanyiakinyidevelopers.goals.adapters.AchivedHistoryAdopter
 import com.kanyiakinyidevelopers.goals.databinding.FragmentAchivedGoalsBinding
 import com.kanyiakinyidevelopers.goals.models.Goal
@@ -24,6 +21,7 @@ import com.kanyiakinyidevelopers.goals.utils.showSnackbar
 import com.kanyiakinyidevelopers.goals.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import java.util.ArrayList
 
 
 @AndroidEntryPoint
@@ -57,6 +55,11 @@ class AchivedGoalsFragment : Fragment() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val goal = achievedGoalsAdapter.currentList[viewHolder.adapterPosition]
                 viewModel.onGoalDeleted(goal)
+
+                /*val position = viewHolder.adapterPosition
+                val arrayList = ArrayList<Goal>()
+                arrayList.removeAt(position)
+                achievedGoalsAdapter.notifyDataSetChanged()*/
             }
 
         }).attachToRecyclerView(binding.allAchivedGoals)
