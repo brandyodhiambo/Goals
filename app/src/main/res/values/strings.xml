@@ -7,4 +7,6 @@
     <string name="search">Search...</string>
     <string name="achieved_goals">Achieved Goals</string>
     <string name="view_all">View All</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.kanyiakinyidevelopers.goals.ui.fragments.main
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +15,13 @@ import com.kanyiakinyidevelopers.goals.R
 import com.kanyiakinyidevelopers.goals.adapters.AchievedGoalsAdapter
 import com.kanyiakinyidevelopers.goals.adapters.GoalsAdapter
 import com.kanyiakinyidevelopers.goals.databinding.FragmentHomeBinding
+import com.kanyiakinyidevelopers.goals.models.Goal
 import com.kanyiakinyidevelopers.goals.utils.Resource
 import com.kanyiakinyidevelopers.goals.utils.showSnackbar
 import com.kanyiakinyidevelopers.goals.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.util.ArrayList
 
 
 @AndroidEntryPoint
@@ -26,6 +30,8 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: MainViewModel by viewModels()
     private lateinit var goalsAdapter: GoalsAdapter
+
+    private val goalsList: ArrayList<Goal> = ArrayList<Goal>()
 
     private val achievedGoalsAdapter: AchievedGoalsAdapter by lazy {
         AchievedGoalsAdapter()
@@ -38,6 +44,15 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
+
+
+        binding.searchCharacter.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun afterTextChanged(editable: Editable?) {filter(editable.toString()) }
+        })
 
         subscribeToGoalsObserver()
         subscribeToAchievedGoalsObserver()
@@ -144,5 +159,15 @@ class HomeFragment : Fragment() {
                 }
             }
         })
+    }
+
+    fun filter(e: String) {
+        val filteredlist: ArrayList<Goal> = ArrayList<Goal>()
+        for (item in goalsList) {
+            if (item.goalTitle!!.lowercase().contains(e.lowercase())) {
+                filteredlist.add(item)
+            }
+        }
+        goalsAdapter.submitList(filteredlist)
     }
 }
