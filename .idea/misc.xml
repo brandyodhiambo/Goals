@@ -25,6 +25,9 @@
         <entry key="app/src/main/res/layout/parent_recycler_row.xml" value="0.26197916666666665" />
         <entry key="app/src/main/res/layout/shimmer_layout.xml" value="0.26145833333333335" />
         <entry key="app/src/main/res/layout/vertical_shimmer.xml" value="0.26145833333333335" />
+        <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/menu/notification_menu.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/menu/options_menu.xml" value="0.19635416666666666" />
       </map>
     </option>
   </component>

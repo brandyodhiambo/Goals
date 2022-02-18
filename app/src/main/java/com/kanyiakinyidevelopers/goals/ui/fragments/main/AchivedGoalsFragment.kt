@@ -56,10 +56,6 @@ class AchivedGoalsFragment : Fragment() {
                 val goal = achievedGoalsAdapter.currentList[viewHolder.adapterPosition]
                 viewModel.onGoalDeleted(goal)
 
-                /*val position = viewHolder.adapterPosition
-                val arrayList = ArrayList<Goal>()
-                arrayList.removeAt(position)
-                achievedGoalsAdapter.notifyDataSetChanged()*/
             }
 
         }).attachToRecyclerView(binding.allAchivedGoals)
