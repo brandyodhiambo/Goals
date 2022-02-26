@@ -28,9 +28,7 @@ import java.util.ArrayList
 class AchivedGoalsFragment : Fragment() {
    private lateinit var binding: FragmentAchivedGoalsBinding
     private val viewModel: MainViewModel by viewModels()
-    private val achievedGoalsAdapter: AchivedHistoryAdopter by lazy {
-        AchivedHistoryAdopter()
-    }
+    private lateinit var achievedGoalsAdapter: AchivedHistoryAdopter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,26 +37,27 @@ class AchivedGoalsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAchivedGoalsBinding.inflate(inflater,container,false)
 
+        achievedGoalsAdapter = AchivedHistoryAdopter(AchivedHistoryAdopter.OnClickListener{ goal ->
+            ItemTouchHelper(object:ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
+                override fun onMove(
+                    recyclerView: RecyclerView,
+                    viewHolder: RecyclerView.ViewHolder,
+                    target: RecyclerView.ViewHolder
+                ): Boolean {
+                    return false
+                }
+
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                    //val goal = achievedGoalsAdapter.currentList[viewHolder.adapterPosition]
+                    viewModel.onGoalDeleted(goal)
+                }
+
+            }).attachToRecyclerView(binding.allAchivedGoals)
+        })
+
         subscribeToAllAchievedGoalsObserver()
 
-        viewModel.getAchievedGoals()
 
-        ItemTouchHelper(object:ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                return false
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                val goal = achievedGoalsAdapter.currentList[viewHolder.adapterPosition]
-                viewModel.onGoalDeleted(goal)
-
-            }
-
-        }).attachToRecyclerView(binding.allAchivedGoals)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.goalChannel.collect { event->

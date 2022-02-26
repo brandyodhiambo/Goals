@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kanyiakinyidevelopers.goals.databinding.AchivedGoalsRowBinding
 import com.kanyiakinyidevelopers.goals.models.Goal
 
-class AchivedHistoryAdopter :ListAdapter<Goal,AchivedHistoryAdopter.MyHolder>(COMPARATOR){
+class AchivedHistoryAdopter(private val onClickListener: OnClickListener) :ListAdapter<Goal,AchivedHistoryAdopter.MyHolder>(COMPARATOR){
 
     private object COMPARATOR : DiffUtil.ItemCallback<Goal>(){
         override fun areItemsTheSame(oldItem: Goal, newItem: Goal): Boolean {
@@ -36,5 +36,13 @@ class AchivedHistoryAdopter :ListAdapter<Goal,AchivedHistoryAdopter.MyHolder>(CO
     override fun onBindViewHolder(holder: MyHolder, position: Int) {
         val achived = getItem(position)
         holder.bind(achived)
+
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(achived)
+        }
+    }
+
+    class OnClickListener(val clickListener: (goalModel: Goal) -> Unit) {
+        fun onClick(goalModel: Goal) = clickListener(goalModel)
     }
 }

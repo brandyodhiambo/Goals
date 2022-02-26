@@ -57,7 +57,7 @@
             android:layout_marginTop="8dp"
             android:text="06 November 2021 at 7:00PM"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textSize="11sp"
+            android:textSize="9sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/textViewDesc"
             app:layout_constraintTop_toBottomOf="@+id/textViewDesc" />

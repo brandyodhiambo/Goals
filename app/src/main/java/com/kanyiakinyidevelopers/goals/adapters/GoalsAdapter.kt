@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kanyiakinyidevelopers.goals.R
 import com.kanyiakinyidevelopers.goals.databinding.GoalRowBinding
 import com.kanyiakinyidevelopers.goals.models.Goal
+import com.kanyiakinyidevelopers.goals.utils.formatDate
 
 class GoalsAdapter(private val onClickListener:OnClickListener) : ListAdapter<Goal, GoalsAdapter.MyViewHolder>(COMPARATOR) {
 
@@ -36,7 +37,7 @@ class GoalsAdapter(private val onClickListener:OnClickListener) : ListAdapter<Go
             binding.textViewTitle.text = goal?.goalTitle
             binding.textViewDesc.text = goal?.goalDescription
             //binding.checkBoxAchieved.isChecked = goal!!.isAchieved
-            binding.textViewDate.text = goal?.dateTime
+            binding.textViewDate.text = formatDate(goal?.dateTime?.toLong()!!)
             binding.textViewName.text = goal?.poster
 
             val myColor: Int = Color.parseColor(goal?.goalBgColor)

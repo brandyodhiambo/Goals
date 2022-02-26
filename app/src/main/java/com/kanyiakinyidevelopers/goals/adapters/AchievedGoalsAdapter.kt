@@ -45,4 +45,8 @@ class AchievedGoalsAdapter :
         val goal = getItem(position)
         holder.bind(goal)
     }
+
+
 }
+
+
