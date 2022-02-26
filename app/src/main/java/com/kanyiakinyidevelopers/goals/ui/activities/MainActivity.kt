@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -16,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.kanyiakinyidevelopers.goals.R
 import com.kanyiakinyidevelopers.goals.databinding.ActivityMainBinding
 import com.kanyiakinyidevelopers.goals.ui.fragments.auth.LoginFragment
+import com.kanyiakinyidevelopers.goals.ui.fragments.main.SettingsFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -54,8 +56,13 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
+            R.id.about -> {
+                Toast.makeText(this, "This is about", Toast.LENGTH_SHORT).show()
+                return true
+            }
             R.id.settings -> {
-                Toast.makeText(this, "This is settings", Toast.LENGTH_SHORT).show()
+                val navController = Navigation.findNavController(this,R.id.fragmentContainerView254)
+                navController.navigate(R.id.settingsFragment)
                 return true
             }
             R.id.share -> {

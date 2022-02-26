@@ -15,4 +15,24 @@
     <string name="logout">Logout</string>
     <string name="share">Share</string>
     <string name="history">History</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="background">What is the Background of Goals App</string>
+    <string name="goals_inform">Goals app was designed with an aim to help individuals keep track of their daily activity and progress</string>
+    <string name="inform">Goals App simply help everyone in their daily progress to keep track of all the activities they would wish to accomplish and in time</string>
+    <string name="why_goals_app">Why goals app</string>
+    <string name="basic_rule_to_keep_track_of_your_goals">Basic Rule to keep Track of your Goals</string>
+    <string name="goals_information">1.set your goal \n 2.Have a starting point \n 3.Ensure you make small progress daily \n 4.Finish what You start</string>
 </resources>

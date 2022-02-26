@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/layout/fragment_add_goal.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/fragment_forgot_password.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_get_started.xml" value="0.18796296296296297" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.24334784712143204" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.19635416666666666" />
@@ -28,6 +29,7 @@
         <entry key="app/src/main/res/menu/drawer_menu.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/menu/notification_menu.xml" value="0.19635416666666666" />
         <entry key="app/src/main/res/menu/options_menu.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/xml/root_preferences.xml" value="0.25" />
       </map>
     </option>
   </component>

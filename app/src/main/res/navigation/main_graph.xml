@@ -26,4 +26,8 @@
         android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.AchivedGoalsFragment"
         android:label="Achieved Goals"
         tools:layout="@layout/fragment_achived_goals" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>
