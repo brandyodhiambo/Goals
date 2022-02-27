@@ -29,5 +29,15 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="Settings" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.kanyiakinyidevelopers.goals.ui.fragments.main.HelpFragment"
+        android:label="Help"
+        tools:layout="@layout/fragment_help" />
 </navigation>

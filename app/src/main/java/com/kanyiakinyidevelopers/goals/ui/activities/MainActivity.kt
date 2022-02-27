@@ -56,10 +56,6 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
-            R.id.about -> {
-                Toast.makeText(this, "This is about", Toast.LENGTH_SHORT).show()
-                return true
-            }
             R.id.settings -> {
                 val navController = Navigation.findNavController(this,R.id.fragmentContainerView254)
                 navController.navigate(R.id.settingsFragment)
@@ -73,11 +69,14 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.history -> {
-                Toast.makeText(this, "This is history", Toast.LENGTH_SHORT).show()
+                val navController = Navigation.findNavController(this,R.id.fragmentContainerView254)
+                navController.navigate(R.id.historyFragment)
                 return true
             }
             R.id.help -> {
-                Toast.makeText(this, "This is is help", Toast.LENGTH_SHORT).show()
+                val navController = Navigation.findNavController(this,R.id.fragmentContainerView254)
+                navController.navigate(R.id.helpFragment)
+
                 return true
             }
             R.id.logout -> {

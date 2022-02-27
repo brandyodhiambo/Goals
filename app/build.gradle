@@ -100,5 +100,7 @@ dependencies {
 
     //Shimmer Effect
     implementation 'com.github.sharish:ShimmerRecyclerView:v1.3'
+    // country picker
+    implementation 'com.github.yesterselga:country-picker-android:2.0'
 
 }

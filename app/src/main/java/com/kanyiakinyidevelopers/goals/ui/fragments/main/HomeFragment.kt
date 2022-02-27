@@ -169,5 +169,6 @@ class HomeFragment : Fragment() {
             }
         }
         goalsAdapter.submitList(filteredlist)
+        binding.allGoalsRecyclerView.adapter = goalsAdapter
     }
 }
