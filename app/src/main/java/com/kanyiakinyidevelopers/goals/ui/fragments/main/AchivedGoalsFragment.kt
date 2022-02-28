@@ -37,6 +37,8 @@ class AchivedGoalsFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAchivedGoalsBinding.inflate(inflater,container,false)
 
+        binding.swipeAchievedLayout.isRefreshing = false
+
         achievedGoalsAdapter = AchivedHistoryAdopter(AchivedHistoryAdopter.OnClickListener{ goal ->
             ItemTouchHelper(object:ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
                 override fun onMove(
@@ -68,6 +70,7 @@ class AchivedGoalsFragment : Fragment() {
                                 viewModel.onUndo(event.goal)
                             }.show()
                     }
+
                 }
             }
         }
@@ -86,8 +89,11 @@ class AchivedGoalsFragment : Fragment() {
                     binding.progressBar.isVisible = false
                     if (it.data?.isEmpty()!!) {
                         Toast.makeText(requireContext(), "No Achieved Goals", Toast.LENGTH_SHORT).show()
+                        binding.swipeAchievedLayout.isRefreshing = false
+
                     }
 
+                    binding.swipeAchievedLayout.isRefreshing = false
                     achievedGoalsAdapter.submitList(it.data)
                     binding.allAchivedGoals.adapter = achievedGoalsAdapter
                     binding.allAchivedGoals.isVisible = true
@@ -95,6 +101,8 @@ class AchivedGoalsFragment : Fragment() {
                 is Resource.Error ->{
                     binding.progressBar.isVisible = false
                     showSnackbar(it.message!!)
+                    binding.swipeAchievedLayout.isRefreshing = false
+
                 }
                 else ->{
                     Toast.makeText(requireContext(), "Unknown Error", Toast.LENGTH_SHORT).show()

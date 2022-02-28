@@ -46,13 +46,7 @@ class HomeFragment : Fragment() {
         val view = binding.root
 
 
-        binding.searchCharacter.addTextChangedListener(object:TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-            override fun afterTextChanged(editable: Editable?) {filter(editable.toString()) }
-        })
 
         subscribeToGoalsObserver()
         subscribeToAchievedGoalsObserver()
@@ -95,12 +89,18 @@ class HomeFragment : Fragment() {
             viewModel.getAchievedGoals()
         }
 
+        binding.searchCharacter.addTextChangedListener(object:TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun afterTextChanged(editable: Editable?) {filter(editable.toString()) }
+        })
+
         return view
     }
 
 
     private fun subscribeToGoalsObserver() {
-        viewModel.goalsStatus.observe(viewLifecycleOwner, {
+        viewModel.goalsStatus.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
                     binding.allGoalsRecyclerView.showShimmerAdapter()
@@ -126,12 +126,12 @@ class HomeFragment : Fragment() {
                     Toast.makeText(requireContext(), "Unknown Error", Toast.LENGTH_SHORT).show()
                 }
             }
-        })
+        }
 
     }
 
     private fun subscribeToAchievedGoalsObserver() {
-        viewModel.achievedGoalsStatus.observe(viewLifecycleOwner, {
+        viewModel.achievedGoalsStatus.observe(viewLifecycleOwner) {
             when (it) {
                 is Resource.Loading -> {
                     binding.achievedGoalsRecyclerView.showShimmerAdapter()
@@ -158,17 +158,33 @@ class HomeFragment : Fragment() {
                     Toast.makeText(requireContext(), "Unknown Error", Toast.LENGTH_SHORT).show()
                 }
             }
-        })
-    }
-
-    fun filter(e: String) {
-        val filteredlist: ArrayList<Goal> = ArrayList<Goal>()
-        for (item in goalsList) {
-            if (item.goalTitle!!.lowercase().contains(e.lowercase())) {
-                filteredlist.add(item)
-            }
         }
-        goalsAdapter.submitList(filteredlist)
-        binding.allGoalsRecyclerView.adapter = goalsAdapter
+    }
+     fun filter(e: String) {
+         viewModel.goalsStatus.observe(viewLifecycleOwner){
+             when(it){
+                 is Resource.Loading ->{
+                     binding.allGoalsRecyclerView.showShimmerAdapter()
+                 }
+                 is Resource.Success ->{
+                     val filterers = ArrayList<Goal>()
+                     for (item in it.data!!) {
+                         if (item.goalTitle!!.lowercase().contains(e.lowercase())) {
+                             filterers.add(item)
+                         }
+                     }
+                     goalsAdapter.submitList(filterers)
+                 }
+                 is Resource.Error ->{
+                     showSnackbar(it.message!!)
+                     binding.allGoalsRecyclerView.showShimmerAdapter()
+                     binding.swipeLayout.isRefreshing = false
+                 }
+                 else -> {
+                     Toast.makeText(requireContext(), "Unknown Error", Toast.LENGTH_SHORT).show()
+                 }
+             }
+         }
+
     }
 }
