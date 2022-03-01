@@ -128,11 +128,17 @@ class MainRepository {
     suspend fun deleteGoal(goal: Goal): Resource<Any>{
         return withContext(Dispatchers.IO){
 
+            val goalsList = ArrayList<Goal>()
+
             databaseReference.child("achieved_goals").orderByChild("postId").equalTo(goal.postId)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
                         for (data in dataSnapshot.children) {
                             data.ref.removeValue()
+                            val value: Goal? = data.getValue(Goal::class.java)
+                            if (value != null) {
+                                goalsList.remove(value)
+                            }
                         }
                     }
 

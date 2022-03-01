@@ -40,21 +40,7 @@ class AchivedGoalsFragment : Fragment() {
         binding.swipeAchievedLayout.isRefreshing = false
 
         achievedGoalsAdapter = AchivedHistoryAdopter(AchivedHistoryAdopter.OnClickListener{ goal ->
-            ItemTouchHelper(object:ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
-                override fun onMove(
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    target: RecyclerView.ViewHolder
-                ): Boolean {
-                    return false
-                }
 
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    //val goal = achievedGoalsAdapter.currentList[viewHolder.adapterPosition]
-                    viewModel.onGoalDeleted(goal)
-                }
-
-            }).attachToRecyclerView(binding.allAchivedGoals)
         })
 
         subscribeToAllAchievedGoalsObserver()
@@ -97,6 +83,25 @@ class AchivedGoalsFragment : Fragment() {
                     achievedGoalsAdapter.submitList(it.data)
                     binding.allAchivedGoals.adapter = achievedGoalsAdapter
                     binding.allAchivedGoals.isVisible = true
+
+
+                    //swipe to delete
+                    ItemTouchHelper(object:ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT){
+                        override fun onMove(
+                            recyclerView: RecyclerView,
+                            viewHolder: RecyclerView.ViewHolder,
+                            target: RecyclerView.ViewHolder
+                        ): Boolean {
+                            return false
+                        }
+
+                        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                            val goal = achievedGoalsAdapter.currentList[viewHolder.adapterPosition]
+                            viewModel.onGoalDeleted(goal)
+                            achievedGoalsAdapter.notifyItemRemoved(viewHolder.adapterPosition)
+                        }
+
+                    }).attachToRecyclerView(binding.allAchivedGoals)
                 }
                 is Resource.Error ->{
                     binding.progressBar.isVisible = false
