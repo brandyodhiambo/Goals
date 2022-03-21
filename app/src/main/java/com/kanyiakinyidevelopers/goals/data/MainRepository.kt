@@ -78,7 +78,7 @@ class MainRepository {
                     goalsList.add(result!!)
                 }
 
-                Resource.Success(goalsList)
+                Resource.Success(goalsList.reversed())
             }
         }
     }

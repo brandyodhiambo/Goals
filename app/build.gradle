@@ -103,4 +103,10 @@ dependencies {
     // country picker
     implementation 'com.github.yesterselga:country-picker-android:2.0'
 
+    // Firebase functions
+    implementation 'com.google.firebase:firebase-functions:20.0.1'
+
+// Firebase messaging
+    implementation 'com.google.firebase:firebase-messaging:20.2.1'
+
 }
