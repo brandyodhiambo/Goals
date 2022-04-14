@@ -1,4 +1,4 @@
-<p align="center"><img src="project/logo.png" alt="The Goals App" height="130px"></p>
+<p align="center"><img src="project/the-goals.png" alt="The Goals App" height="250px"></p>
 
 # The Goals App
 An Android app built with Kotlin, Which helps individuals to keep tracks of there daily activities.It is built with the MVVM pattern and the latest Jetpack components. Firebase as the backend
@@ -31,7 +31,6 @@ An Android app built with Kotlin, Which helps individuals to keep tracks of ther
 - [Firebase Functions](https://firebase.google.com/docs/functions) - Cloud Functions for Firebase is a serverless framework that lets you automatically run backend code in response to events triggered by Firebase features and HTTPS requests.
 - [Firebase Database](https://firebase.google.com/docs/database) - Store and sync data with our NoSQL cloud database. Data is synced across all clients in realtime, and remains available when your app goes offline.
 - [Firebase Authentication](https://firebase.google.com/docs/auth) - Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app.
-- [Firebase Storage](https://firebase.google.com/docs/storage) - Cloud Storage for Firebase is a powerful, simple, and cost-effective object storage service built for Google scale.
 
 ## Setup Requirements
 - Android device or emulator
@@ -51,5 +50,3 @@ In order to get the app running yourself, you need to:
 - Found this project useful ❤️? Support by clicking the ⭐️ button on the upper right of this page. ✌️
 - Notice anything else missing? File an issue
 - Feel free to contribute in any way to the project from typos in docs to code review are all welcome.
-
-
