@@ -27,6 +27,8 @@
         <entry key="app/src/main/res/layout/shimmer_layout.xml" value="0.26145833333333335" />
         <entry key="app/src/main/res/layout/vertical_shimmer.xml" value="0.26145833333333335" />
         <entry key="app/src/main/res/menu/options_menu.xml" value="0.19635416666666666" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="app/src/main/res/xml/root_preferences.xml" value="0.1" />
       </map>
     </option>
