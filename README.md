@@ -1,7 +1,7 @@
 <p align="center"><img src="project/logo.png" alt="The Goals App" height="130px"></p>
 
 # The Goals App
-An Android app built with Kotlin, Which helps individuals to keep tracks of there daily activitiesIt is built with the MVVM pattern and the latest Jetpack components. Firebase as the backend
+An Android app built with Kotlin, Which helps individuals to keep tracks of there daily activities.It is built with the MVVM pattern and the latest Jetpack components. Firebase as the backend
 
 # Splash
 <img src="project/splash.png" width="250"/>
